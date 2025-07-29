@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shaik Umaiza | AI & Data Science Engineer</title>
+    <title>Shaik Umaiza | Front-end Developer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -35,12 +35,92 @@
             padding: 0 20px;
         }
 
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(46, 139, 87, 0.95);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        nav.scrolled {
+            background-color: rgba(46, 139, 87, 0.98);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            color: white;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        /* Header */
         header {
             background: #2E8B57;
             color: white;
             padding: 2rem 0;
             position: relative;
             overflow: hidden;
+            margin-top: 70px; 
         }
 
         header::before {
@@ -173,6 +253,7 @@
             color: white;
         }
 
+        /* Sections */
         section {
             padding: 5rem 0;
         }
@@ -222,6 +303,7 @@
             border-radius: 2px;
         }
 
+        /* About */
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -263,6 +345,7 @@
             color: var(--accent);
         }
 
+        /* Experience */
         .timeline {
             position: relative;
             max-width: 800px;
@@ -359,9 +442,16 @@
             left: -10px;
         }
 
+        /* Projects */
+        .projects-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
         }
 
@@ -371,6 +461,9 @@
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .project-card:hover {
@@ -381,6 +474,7 @@
         .project-image {
             height: 200px;
             overflow: hidden;
+            position: relative;
         }
 
         .project-image img {
@@ -396,6 +490,9 @@
 
         .project-info {
             padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .project-info h3 {
@@ -407,6 +504,11 @@
             margin-bottom: 1rem;
             color: var(--dark);
             opacity: 0.8;
+            flex: 1;
+        }
+
+        .project-links {
+            margin-top: auto;
         }
 
         .project-links a {
@@ -420,6 +522,7 @@
             color: var(--accent);
         }
 
+        /* Contact */
         .contact-info {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -460,6 +563,7 @@
             color: var(--secondary);
         }
 
+        /* Footer */
         footer {
             background-color: var(--dark);
             color: white;
@@ -489,6 +593,7 @@
             transform: translateY(-3px);
         }
 
+        /* Responsive */
         @media (max-width: 992px) {
             .hero {
                 flex-direction: column;
@@ -529,6 +634,12 @@
             }
         }
 
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         @media (max-width: 576px) {
             .hero-text h1 {
                 font-size: 2.2rem;
@@ -545,15 +656,43 @@
             .about-skills {
                 grid-template-columns: 1fr;
             }
+        }
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: rgba(46, 139, 87, 0.98);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: var(--transition);
+                z-index: 999;
+            }
 
-            .projects-grid {
-                grid-template-columns: 1fr;
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 1.5rem 0;
+            }
+
+            .hamburger {
+                display: block;
             }
         }
+
     </style>
 </head>
 <body>
-    <!-- Header Section -->
+    <!-- Header/Hero Section -->
     <header>
         <div class="container hero">
             <div class="hero-text">
@@ -562,7 +701,7 @@
                     <span class="name-word">Umaiza</span>
                     <span class="name-word">Bhanu</span>
                 </h1>
-                <h2>AI & Data Science Engineer</h2>
+                <h2>Front-end Developer</h2>
                 <p>A highly motivated Computer Science Engineering student with a strong foundation in software development, algorithms, data structures and Machine Learning.</p>
                 <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem;">
                     <a href="22BQ1A54E6-RESUME.pdf" class="btn" download>Download Resume</a>
@@ -575,6 +714,25 @@
             </div>
         </div>
     </header>
+
+    <!-- Navigation Bar -->
+    <nav id="navbar">
+        <div class="nav-container container">
+            <a href="#" class="logo">Shaik Umaiza</a>
+            <button class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
 
     <!-- About Section -->
     <section id="about">
@@ -608,7 +766,8 @@
                     <div class="skill-category">
                         <h4>Web Development</h4>
                         <ul>
-                            <li>HTML/CSS</li>
+                            <li>HTML</li>
+                            <li>CSS</li>
                             <li>React</li>
                             <li>Node.js</li>
                         </ul>
@@ -695,17 +854,32 @@
             <div class="section-title">
                 <h2>Projects</h2>
             </div>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="task-image.png" alt="Task Manager">
+            <div class="projects-container">
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="task-image.png" alt="Task Manager">
+                        </div>
+                        <div class="project-info">
+                            <h3>Task Manager</h3>
+                            <p>A web application for managing daily tasks with features like task categorization, due dates, and priority settings.</p>
+                            <div class="project-links">
+                                <a href="https://umaiza2004.github.io/Task-Manager/" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                                <a href="#"><i class="fab fa-github"></i> Code</a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="project-info">
-                        <h3>Task Manager</h3>
-                        <p>A web application for managing daily tasks with features like task categorization, due dates, and priority settings.</p>
-                        <div class="project-links">
-                            <a href="https://umaiza2004.github.io/Task-Manager/" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                            <a href="#"><i class="fab fa-github"></i> Code</a>
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="image.jpg" alt="Portfolio-Website">
+                        </div>
+                        <div class="project-info">
+                            <h3>Portfolio-Website</h3>
+                            <p>A professional portfolio highlighting my expertise in AI, Data Science, and web development.</p>
+                            <div class="project-links">
+                                <a href="https://umaiza2004.github.io/Portfolio/" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                                <a href="#"><i class="fab fa-github"></i> Code</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -778,13 +952,49 @@
     <footer>
         <div class="container">
             <div class="social-links">
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/shaik-umaiza-bhanu-a1b2aa26a/?trk=public-profile-join-page"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/Umaiza2004/"><i class="fab fa-github"></i></a>
                 <a href="#"><i class="fab fa-twitter"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
             </div>
             <p>&copy; 2024 Shaik Umaiza Bhanu. All rights reserved.</p>
         </div>
     </footer>
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+
+        hamburger.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling for all links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
